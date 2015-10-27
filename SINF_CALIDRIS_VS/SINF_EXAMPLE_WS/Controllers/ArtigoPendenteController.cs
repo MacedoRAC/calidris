@@ -18,5 +18,9 @@ namespace SINF_EXAMPLE_WS.Controllers
             return IntegrationPri.ListaArtigosPendentes();
         }
 
+        public void Post()
+        {
+            return IntegrationPri.UpdateArtigoStatus(string ArtRef, Boolean status, string excecao);
+        }
     }
 }

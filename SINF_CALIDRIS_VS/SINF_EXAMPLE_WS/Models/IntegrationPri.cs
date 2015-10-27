@@ -109,6 +109,47 @@ namespace SINF_EXAMPLE_WS.Models
             else
                 return null;
         }
+
+        public void UpdateArtigoStatus(string referencia, Boolean status, string excecao)
+        {
+            if (PriEngine.InitializeCompany(SINF_EXAMPLE_WS.Properties.Settings.Default.Company.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.User.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.Password.Trim()) == true)
+            {
+               if(status)
+               {
+                   PriEngine.Engine.Consulta("UPDATE ARTIGOPENDENTE SET Pendente = false, Excecao = '' WHERE ArtRef = referencia");
+
+                   StdBELista encreflist = PriEngine.Engine.Consulta("SELECT EncRef WHERE ArtRef = referencia");
+                   string encref;
+                   while (!encreflist.NoFim())
+                   {
+                       encref = encreflist.Valor("Ref");
+                       encreflist.Seguinte();
+                   }
+
+                   StdBELista artigoslist = PriEngine.Engine.Consulta("SELECT ArtRef FROM ARTIGOPENDENTE WHERE EncRef = encref AND Pendente = true");
+                   List<ArtigoPendente> artigos = new List<ArtigoPendente>();
+                   while (!artigoslist.NoFim())
+                   {
+                       artigos.Add(new ArtigoPendente
+                       {
+                           ArtRef = artigoslist.Valor("ArtRef")
+                       });
+                       artigoslist.Seguinte();
+
+                   }
+
+                   if(!artigos.Any())
+                   {
+                       PriEngine.Engine.Consulta("UPDATE ENCOMENDA SET Status = false WHERE Ref  = encref");
+                   }
+               }
+               else
+               {
+                   PriEngine.Engine.Consulta("UPDATE ARTIGOPENDENTE SET Excecao = excecao WHERE ArtRef = referencia");
+               }
+                
+            }
+        }
     
     }
 }
