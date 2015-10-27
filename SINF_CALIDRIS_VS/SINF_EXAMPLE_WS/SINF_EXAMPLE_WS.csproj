@@ -268,6 +268,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ArtigoPendenteController.cs" />
+    <Compile Include="Models\ArtigoPendente.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Encomenda.cs" />
     <Compile Include="Models\IntegrationPri.cs" />

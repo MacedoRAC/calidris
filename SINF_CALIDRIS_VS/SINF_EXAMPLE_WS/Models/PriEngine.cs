@@ -55,11 +55,6 @@ namespace SINF_EXAMPLE_WS.Models
             {
                 return false;
             }
-
-
         }
-
-
-
     }
 }

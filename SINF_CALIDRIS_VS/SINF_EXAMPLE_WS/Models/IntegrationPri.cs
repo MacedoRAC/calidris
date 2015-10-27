@@ -55,7 +55,7 @@ namespace SINF_EXAMPLE_WS.Models
             if (PriEngine.InitializeCompany(SINF_EXAMPLE_WS.Properties.Settings.Default.Company.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.User.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Ref, PrazoPicking, DataOrder FROM  CLIENTES WHERE Status = false orderBy Prioridade, PrazoPicking DESC");
+                objList = PriEngine.Engine.Consulta("SELECT Ref, PrazoPicking, DataOrder FROM  ENCOMENDAS WHERE Status = false orderBy Prioridade, PrazoPicking DESC");
 
                 while (!objList.NoFim())
                 {
@@ -74,7 +74,41 @@ namespace SINF_EXAMPLE_WS.Models
             else
                 return null;
         }
-    
+
+        
+        public static List<ArtigoPendente> ListaArtigosPendentes()
+        {
+
+            StdBELista objList;
+
+            List<ArtigoPendente> listArtigos = new List<ArtigoPendente>();
+
+            if (PriEngine.InitializeCompany(SINF_EXAMPLE_WS.Properties.Settings.Default.Company.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.User.Trim(), SINF_EXAMPLE_WS.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT ArtRef as Artigo, Quantidade, EncRef as Encomenda, PrazoPicking, Fila, Slot, Nivel FROM  ARTIGOS WHERE Pendente = true orderBy Fila, Slot, Nivel DESC");
+
+                while (!objList.NoFim())
+                {
+                    listArtigos.Add(new ArtigoPendente
+                    {
+                        ArtRef = objList.Valor("ArtRef"),
+                        Quantidade = objList.Valor("Quantidade"),
+                        EncRef = objList.Valor("EncRef"),
+                        PrazoPicking = objList.Valor("PrazoPicking"),
+                        Fila = objList.Valor("Fila"),
+                        Slot = objList.Valor("Slot"),
+                        Nivel = objList.Valor("Nivel")
+                    });
+                    objList.Seguinte();
+
+                }
+
+                return listArtigos;
+            }
+            else
+                return null;
+        }
     
     }
 }
