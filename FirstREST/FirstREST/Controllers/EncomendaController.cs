@@ -31,6 +31,7 @@ namespace FirstREST.Controllers
                 throw new HttpResponseException(
                         Request.CreateResponse(HttpStatusCode.NotFound));
 
+
             }
             else
             {
@@ -61,27 +62,19 @@ namespace FirstREST.Controllers
         }
 
 
-        public HttpResponseMessage Put(int id, Lib_Primavera.Model.Cliente cliente)
+        public HttpResponseMessage Put(String Ref, String RefArt)
         {
 
-            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+            Boolean erro;
 
-            try
+            erro = Lib_Primavera.PriIntegration.Update_Encomenda(Ref, RefArt);
+            if (!erro)
             {
-                erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
-                if (erro.Erro == 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, erro.Descricao);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, "Encomenda pronta para Putaway");
             }
-
-            catch (Exception exc)
+            else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Encomenda inexistente ou Ainda existem artigos pendentes");
             }
         }
 

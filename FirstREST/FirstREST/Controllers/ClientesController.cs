@@ -28,7 +28,6 @@ namespace FirstREST.Controllers
             {
                 throw new HttpResponseException(
                         Request.CreateResponse(HttpStatusCode.NotFound));
-
             }
             else
             {
