@@ -13,6 +13,10 @@ namespace FirstREST.Controllers
     {
         //
         // GET: /Clientes/
+        /// <summary>
+        /// Permite obter a lista de todos os clientes
+        /// </summary>
+        /// <returns> Lista de Clientes </returns>
 
         public IEnumerable<Lib_Primavera.Model.Cliente> Get()
         {

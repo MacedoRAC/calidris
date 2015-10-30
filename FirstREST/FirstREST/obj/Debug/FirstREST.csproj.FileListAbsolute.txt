@@ -140,9 +140,16 @@ C:\SIPROJECTS\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\
 C:\SIPROJECTS\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\ru\System.Spatial.resources.dll
 C:\SIPROJECTS\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\zh-Hans\System.Spatial.resources.dll
 C:\SIPROJECTS\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.dll
+C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.pdb
+C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.dll
+C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.pdb
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\FirstREST.dll.config
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\FirstREST.dll
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\FirstREST.pdb
+C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\XmlDocument.xml
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\Antlr3.Runtime.dll
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\EntityFramework.dll
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\Microsoft.Data.Edm.dll
@@ -211,9 +218,3 @@ C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\bin\zh-Han
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\obj\Debug\FirstREST.dll
 C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST\obj\Debug\FirstREST.pdb
-C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
-C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.dll
-C:\Users\user\Documents\GitHub\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.pdb
-C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
-C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.dll
-C:\Users\user\Desktop\calidris\FirstREST\FirstREST\obj\Debug\FirstREST.pdb

@@ -66,3 +66,5 @@ c:\users\user\documents\visual studio 2012\Projects\FirstREST\FirstREST.Tests\bi
 c:\users\user\documents\visual studio 2012\Projects\FirstREST\FirstREST.Tests\obj\Debug\FirstREST.Tests.csprojResolveAssemblyReference.cache
 c:\users\user\documents\visual studio 2012\Projects\FirstREST\FirstREST.Tests\obj\Debug\FirstREST.Tests.dll
 c:\users\user\documents\visual studio 2012\Projects\FirstREST\FirstREST.Tests\obj\Debug\FirstREST.Tests.pdb
+C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST.Tests\obj\Debug\FirstREST.Tests.csprojResolveAssemblyReference.cache
+C:\SINF\Code_Examples\Hello World INTEG PRIMAVERA\FirstREST\FirstREST.Tests\obj\Debug\FirstREST.Tests.dll

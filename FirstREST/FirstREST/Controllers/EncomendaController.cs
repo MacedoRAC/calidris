@@ -15,6 +15,10 @@ namespace FirstREST.Controllers
     {
         //
         // GET: /Encomenda/
+        /// <summary>
+        /// Obter Encomendas pendentes, Artigos de Encomenda e rota associada à mesma
+        /// </summary>
+        /// <returns> Lista de encomendas pendentes </returns>
 
         public IEnumerable<Lib_Primavera.Model.Encomenda> Get()
         {
@@ -62,6 +66,16 @@ namespace FirstREST.Controllers
         }*/
 
 
+        //
+        // PUT: /Encomenda/
+        /// <summary>
+        ///  Atualizar Estado de uma Encomenda com base nos seus artigos
+        /// </summary>
+        /// <param name="Ref"> Referência da Encomenda </param>
+        /// <param name="RefArt"> Referência do Artigo </param>
+        /// <returns>
+        ///  Retorna uma resposta de acordo com o estado da Encomenda
+        /// </returns>
         public HttpResponseMessage Put(String Ref, String RefArt)
         {
 

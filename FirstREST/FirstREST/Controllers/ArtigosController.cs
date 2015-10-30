@@ -15,6 +15,10 @@ namespace FirstREST.Controllers
     {
         //
         // GET: /Artigos/
+        /// <summary>
+        /// Obter todos os Artigos disponíveis para Picking
+        /// </summary>
+        /// <returns> Lista de artigos para picking </returns>
 
         public IEnumerable<Lib_Primavera.Model.Artigo> Get()
         {
