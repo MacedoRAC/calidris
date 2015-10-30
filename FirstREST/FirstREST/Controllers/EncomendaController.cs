@@ -27,7 +27,7 @@ namespace FirstREST.Controllers
 
 
         // GET api/encomenda/5    
-        /*public Lib_Primavera.Model.Encomenda Get(string id)
+       /* public Lib_Primavera.Model.Encomenda Get(string id)
         {
             Lib_Primavera.Model.Encomenda encomenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
             if (encomenda == null)
