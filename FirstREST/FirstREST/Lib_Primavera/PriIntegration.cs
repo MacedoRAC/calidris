@@ -189,7 +189,7 @@ namespace FirstREST.Lib_Primavera
         public static Lib_Primavera.Model.RespostaErro DelCliente(string codCliente)
         {
 
-            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+            /*Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
             GcpBECliente objCli = new GcpBECliente();
 
 
@@ -227,7 +227,8 @@ namespace FirstREST.Lib_Primavera
                 erro.Erro = 1;
                 erro.Descricao = ex.Message;
                 return erro;
-            }
+            }*/
+            return null;
 
         }
 

@@ -23,7 +23,7 @@ namespace FirstREST.Controllers
 
 
         // GET api/encomenda/5    
-        public Lib_Primavera.Model.Encomenda Get(string id)
+        /*public Lib_Primavera.Model.Encomenda Get(string id)
         {
             Lib_Primavera.Model.Encomenda encomenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
             if (encomenda == null)
@@ -37,10 +37,10 @@ namespace FirstREST.Controllers
             {
                 return encomenda;
             }
-        }
+        }*/
 
 
-        public HttpResponseMessage Post(Lib_Primavera.Model.Encomenda dv)
+        /*public HttpResponseMessage Post(Lib_Primavera.Model.Encomenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
@@ -59,7 +59,7 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-        }
+        }*/
 
 
         public HttpResponseMessage Put(String Ref, String RefArt)
@@ -80,7 +80,7 @@ namespace FirstREST.Controllers
 
 
 
-        public HttpResponseMessage Delete(string id)
+        /*public HttpResponseMessage Delete(string id)
         {
 
 
@@ -108,6 +108,6 @@ namespace FirstREST.Controllers
 
             }
 
-        }
+        }*/
     }
 }

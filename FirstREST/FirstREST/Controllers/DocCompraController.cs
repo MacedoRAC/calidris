@@ -14,12 +14,12 @@ namespace FirstREST.Controllers
     {
 
 
-        public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
+        /*public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
         {
             return Lib_Primavera.PriIntegration.VGR_List();
         }
 
-        /*
+        
         // GET api/cliente/5    
         public Lib_Primavera.Model.DocCompra Get(string id)
         {
@@ -35,7 +35,7 @@ namespace FirstREST.Controllers
                 return docvenda;
             }
         }
-        */
+        
 
 
         public HttpResponseMessage Post(Lib_Primavera.Model.DocCompra dc)
@@ -57,7 +57,7 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-        }
+        }*/
 
     }
 }
