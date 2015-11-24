@@ -2,22 +2,25 @@
 <html>
 
 
-<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/empty_page.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Oct 2015 21:18:23 GMT -->
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/ecommerce-orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Oct 2015 21:18:53 GMT -->
 
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calidris</title>
+    <title>Calidris 4</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
-    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 
 </head>
 
@@ -34,13 +37,13 @@
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">João Fonseca</strong>
-                             </span> <span class="text-muted text-xs block">Irmãos Martins LDA <b class="caret"></b></span> </span>
+                             </span> <span class="text-muted text-xs block">Picking<b class="caret"></b></span> </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a>
+                                <li><a href="#">Perfil</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">Logout</a>
+                                <li><a href="#">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,10 +53,10 @@
                     </li>
 
                     <li>
-                        <a href="widgets.html"><i class="fa fa-truck"></i> <span class="nav-label">Estado das Encomendas</span></a>
+                        <a href="#"><i class="fa fa-truck"></i> <span class="nav-label">Estado das Encomendas</span></a>
                     </li>
                     <li>
-                        <a href="widgets.html"><i class="fa fa-gear"></i> <span class="nav-label">Definições</span></a>
+                        <a href="#"><i class="fa fa-gear"></i> <span class="nav-label">Definições</span></a>
                     </li>
                 </ul>
 
@@ -63,19 +66,14 @@
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-<div class="navbar-header">
+                    <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                        <form role="search" class="navbar-form-custom" action="http://webapplayers.com/inspinia_admin-v2.3/search_results.html">
-                            <div class="form-group">
-                                <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                            </div>
-                        </form>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <img alt="image" src="img/logo_calidris.png" />
                         <li>
-                            <a href="login.html">
-                                <i class="fa fa-sign-out"></i> Log out
+                            <a href="#">
+                                <i class="fa fa-sign-out"></i>
                             </a>
                         </li>
                     </ul>
@@ -87,7 +85,7 @@
                     <h2>Estado das Encomendas</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index-2.html">Encomenda</a>
+                            <a href="#">Encomenda</a>
                         </li>
                         <li class="active">
                             <strong>Aprovar</strong>
@@ -96,9 +94,12 @@
                 </div>
             </div>
 
-
             <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-                
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Encomenda <b>#123</b> | Prazo de entrega: 20 OUT - 29 OUT 2015</h2>
+                    </div>
+                </div>
                 <div class="row">
 
                     <div class="col-lg-12">
@@ -108,24 +109,24 @@
                                 <table class="footable table table-stripped" data-page-size="10">
                                     <thead>
                                         <tr>
-
+                                            <th>Fila/Slot/Nível</th>
                                             <th data-hide="phone">Referência</th>
-                                            <th>Produto</th>
+                                            <th data-hide="phone">Produto</th>
                                             <th data-hide="phone">Tamanho</th>
                                             <th data-hide="phone">Cor</th>
                                             <th data-hide="phone">Quantidade</th>
-                                            <th data-hide="phone">Fila/Slot/Nível</th>
-                                            
-                                            <th>Ordem (Rota)</th>
-
+                                            <th>Estado</th>
+                                            <th data-hide="phone"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
+                                                01F-01S-02N
+                                            </td>
+                                            <td>
                                                 3811206
                                             </td>
-
                                             <td>
                                                 CASACO PÊLO
                                             </td>
@@ -138,9 +139,7 @@
                                             <td>
                                                 500
                                             </td>
-                                            <td>
-                                                01F-01S-02N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-primary">Aprovado</span>
                                             </td>
@@ -152,6 +151,10 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                01F-01S-03N
+                                            </td>
+
                                             <td>
                                                 2121600
                                             </td>
@@ -168,9 +171,7 @@
                                             <td>
                                                 500
                                             </td>
-                                            <td>
-                                                01F-01S-03N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-primary">Aprovado</span>
                                             </td>
@@ -182,6 +183,9 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                01F-10S-01N
+                                            </td>
                                             <td>
                                                 7901320
                                             </td>
@@ -198,20 +202,21 @@
                                             <td>
                                                 250
                                             </td>
-                                            <td>
-                                                01F-10S-01N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-danger">Cancelado</span>
                                             </td>
                                             <td>
-                                                <button class="btn btn-xs btn-white" type="submit"><i class="fa fa-exclamation-triangle"></i>
+                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
                                                 </button>
-                                                <button class="btn btn-xs btn-primary" type="submit"><i class="fa fa-check"></i>
+                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                02F-09S-02N
+                                            </td>
                                             <td>
                                                 2800204
                                             </td>
@@ -228,9 +233,7 @@
                                             <td>
                                                 500
                                             </td>
-                                            <td>
-                                                02F-09S-02N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-primary">Aprovado</span>
                                             </td>
@@ -242,6 +245,10 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                02F-04S-01N
+                                            </td>
+
                                             <td>
                                                 9171600
                                             </td>
@@ -258,20 +265,22 @@
                                             <td>
                                                 500
                                             </td>
-                                            <td>
-                                                02F-04S-01N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-warning">Pendente</span>
                                             </td>
                                             <td>
-                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
+                                                <button class="btn btn-xs btn-white" type="submit"><i class="fa fa-exclamation-triangle"></i>
                                                 </button>
-                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
+                                                <button class="btn btn-xs btn-primary" type="submit"><i class="fa fa-check"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>
+                                                03F-01S-02N
+                                            </td>
+
                                             <td>
                                                 2706312
                                             </td>
@@ -288,11 +297,46 @@
                                             <td>
                                                 250
                                             </td>
-                                            <td>
-                                                03F-01S-02N
-                                            </td>
+                                            
                                             <td>
                                                 <span class="label label-warning">Pendente</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-white" type="submit"><i class="fa fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-primary" type="submit"><i class="fa fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+
+
+
+
+                                        <tr>
+                                            <td>
+                                                01F-01S-02N
+                                            </td>
+
+                                            <td>
+                                                3811206
+                                            </td>
+
+                                            <td>
+                                                CASACO PÊLO
+                                            </td>
+                                            <td>
+                                                S
+                                            </td>
+                                            <td>
+                                                Preto
+                                            </td>
+                                            <td>
+                                                500
+                                            </td>
+                                            
+                                            <td>
+                                                <span class="label label-primary">Aprovado</span>
                                             </td>
                                             <td>
                                                 <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
@@ -301,12 +345,134 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                                                            </tbody>
+                                        <tr>
+                                            <td>
+                                                01F-01S-03N
+                                            </td>
+
+                                            <td>
+                                                2121600
+                                            </td>
+
+                                            <td>
+                                                VESTIDO BORDADO
+                                            </td>
+                                            <td>
+                                                M
+                                            </td>
+                                            <td>
+                                                Vermelho
+                                            </td>
+                                            <td>
+                                                500
+                                            </td>
+                                            
+                                            <td>
+                                                <span class="label label-primary">Aprovado</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                01F-10S-01N
+                                            </td>
+
+                                            <td>
+                                                7901320
+                                            </td>
+
+                                            <td>
+                                                CALÇÕES NÓ
+                                            </td>
+                                            <td>
+                                                XS
+                                            </td>
+                                            <td>
+                                                Azul
+                                            </td>
+                                            <td>
+                                                250
+                                            </td>
+                                            
+                                            <td>
+                                                <span class="label label-danger">Cancelado</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                02F-09S-02N
+                                            </td>
+                                            <td>
+                                                2800204
+                                            </td>
+
+                                            <td>
+                                                VESTIDO COURO
+                                            </td>
+                                            <td>
+                                                M
+                                            </td>
+                                            <td>
+                                                Castanho
+                                            </td>
+                                            <td>
+                                                500
+                                            </td>
+                                            
+                                            <td>
+                                                <span class="label label-primary">Aprovado</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                02F-09S-02N
+                                            </td>
+                                            <td>
+                                                2800204
+                                            </td>
+
+                                            <td>
+                                                VESTIDO COURO
+                                            </td>
+                                            <td>
+                                                M
+                                            </td>
+                                            <td>
+                                                Castanho
+                                            </td>
+                                            <td>
+                                                500
+                                            </td>
+                                            
+                                            <td>
+                                                <span class="label label-primary">Aprovado</span>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);"><i class="fa fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="7">
@@ -325,18 +491,16 @@
             </div>
 
 
-        </div>
-        <div class="footer">
-            <div class="pull-right">
-                <!--10GB of <strong>250GB</strong> Free.-->
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> Calidris &copy; 2015-2016
+                </div>
             </div>
-            <div>
-                <strong>Copyright</strong> Calidris &copy; 2015-2016
-            </div>
-        </div>
 
+        </div>
     </div>
-    </div>
+
+
 
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
@@ -379,8 +543,7 @@
         });
     </script>
 
-
-
 </body>
+
 
 </html>
