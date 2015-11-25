@@ -589,6 +589,12 @@ namespace FirstREST.Lib_Primavera
                     lindv.Cor = objArtList.Valor("CDU_Cor"); ;
                     lindv.Tamanho = objArtList.Valor("CDU_Tamanho");
 
+                    StdBELista objArmazLista;
+                    objArmazLista = PriEngine.Engine.Consulta("SELECT Fila, Slot, Nivel FROM ArtigoArmazem WHERE Artigo=" + objListLin.Valor("Artigo"));
+                    lindv.Fila = objArmazLista.Valor("Fila");
+                    lindv.Slot = objArmazLista.Valor("Slot");
+                    lindv.Nivel = objArmazLista.Valor("Nivel");
+
                     listlindv.Add(lindv);
                     objListLin.Seguinte();
                 }

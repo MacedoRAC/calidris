@@ -26,9 +26,7 @@ namespace FirstREST.Lib_Primavera.Model
              get;
              set;
          }
-
-
-
+        
          public double Quantidade
         {
             get;
@@ -72,6 +70,24 @@ namespace FirstREST.Lib_Primavera.Model
         }
 
         public string Tamanho
+        {
+            get;
+            set;
+        }
+
+        public int Fila
+        {
+            get;
+            set;
+        }
+
+        public int Slot
+        {
+            get;
+            set;
+        }
+
+        public int Nivel
         {
             get;
             set;
