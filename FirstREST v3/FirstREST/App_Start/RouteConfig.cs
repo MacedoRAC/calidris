@@ -16,7 +16,19 @@ namespace FirstREST
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Picking", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Picking",
+                 url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Picking", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Putaway",
+                url: "{controller}",
+                defaults: new { controller = "Putaway", id = UrlParameter.Optional }
             );
         }
     }
