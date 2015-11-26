@@ -18,6 +18,18 @@ namespace FirstREST
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/myjs").Include(
+                        "~/Scripts/jquery-2.1.1.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/plugins/metisMenu/jquery.metisMenu.js",
+                        "~/Scripts/plugins/slimscroll/jquery.slimscroll.js",
+                        "~/Scripts/inspinia.js",
+                        "~/Scripts/plugins/pace/pace.js",
+                        "~/Scripts/plugins/datepicker/bootstrap-datepicker.js",
+                        "~/Scripts/plugins/footable/footable.js",
+                        "~/Scripts/myScript.js"));
+
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -38,6 +50,14 @@ namespace FirstREST
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/mycss").Include(
+                        "~/Content/css/bootstrap.css",
+                        "~/Content/font-awesome/css/font-awesome.css",
+                        "~/Content/css/plugins/footable/footable.core.css",
+                        "~/Content/css/animate.css",
+                        "~/Content/css/style.css",
+                        "~/Content/css/plugins/datapicker/datepicker3.css"));
         }
     }
 }

@@ -606,5 +606,15 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion DocsVenda
+
+        internal static bool Update_Encomenda(string Ref, string RefArt)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static IEnumerable<Model.DocVenda> EncomendasPendentes_List()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -20,14 +20,14 @@ namespace FirstREST.Controllers
         /// </summary>
         /// <returns> Lista de encomendas pendentes </returns>
 
-        public IEnumerable<Lib_Primavera.Model.Encomenda> Get()
+        public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegration.EncomendasPendentes_List();
         }
 
 
         // GET api/encomenda/5    
-        public Lib_Primavera.Model.DocVenda Get(Int64 id)
+        public Lib_Primavera.Model.DocVenda Get(string id)
         {
             Lib_Primavera.Model.DocVenda encomenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
             if (encomenda == null)
@@ -44,7 +44,7 @@ namespace FirstREST.Controllers
         }
 
 
-        public HttpResponseMessage Post(Lib_Primavera.Model.Encomenda dv)
+        public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
@@ -52,8 +52,8 @@ namespace FirstREST.Controllers
             if (erro.Erro == 0)
             {
                 var response = Request.CreateResponse(
-                   HttpStatusCode.Created, dv.CDU_Ref);
-                string uri = Url.Link("DefaultApi", new { DocId = dv.CDU_Ref });
+                   HttpStatusCode.Created, dv.id);
+                string uri = Url.Link("DefaultApi", new { DocId = dv.id });
                 response.Headers.Location = new Uri(uri);
                 return response;
             }

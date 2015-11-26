@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace FirstREST.Controllers
 {
-    public class testeController : ApiController
+    public class testeController : Controller
     {
         //
         // GET: /teste/
