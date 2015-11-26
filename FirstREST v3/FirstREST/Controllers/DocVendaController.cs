@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,8 +22,8 @@ namespace FirstREST.Controllers
         }
 
 
-        // GET api/cliente/5    
-        public Lib_Primavera.Model.DocVenda Get(string id)
+         
+        public  Lib_Primavera.Model.DocVenda Get(string id)
         {
             Lib_Primavera.Model.DocVenda docvenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
             if (docvenda == null)
