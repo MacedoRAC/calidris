@@ -29,7 +29,6 @@ namespace FirstREST.Controllers
             if (docvenda == null)
             {
                 return null;
-
             }
             else
             {
@@ -116,7 +115,7 @@ namespace FirstREST.Controllers
 
         }
 
-        public HttpResponseMessage Put(string codArtigo, int estado, int numDoc, string descricao)
+        public HttpResponseMessage Put(string codArtigo, int estado, string numDoc, string descricao)
         {
 
             Boolean erro;

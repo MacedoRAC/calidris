@@ -7,6 +7,7 @@ using Interop.ErpBS800;         // Use Primavera interop's [Path em C:\Program F
 using Interop.StdPlatBS800;
 using Interop.StdBE800;
 using ADODB;
+using System.Runtime.InteropServices;
 using Interop.IGcpBS800;
 
 namespace FirstREST.Lib_Primavera
@@ -16,8 +17,8 @@ namespace FirstREST.Lib_Primavera
 
         public static StdPlatBS Platform { get; set; }
         public static ErpBS Engine { get; set; }
-        public static Connection _Connection;
-
+       // public static Connection _Connection { get; set; }
+ 
         public static bool InitializeCompany(string Company, string User, string Password)
         {
 
@@ -49,7 +50,7 @@ namespace FirstREST.Lib_Primavera
 
                 // Open Engine
                 MotorLE.AbreEmpresaTrabalho(EnumTipoPlataforma.tpProfissional, ref Company, ref User, ref Password, ref objStdTransac, "Default", ref blnModoPrimario);
-                _Connection = Plataforma.BaseDados.AbreBaseDadosADO("Default", "PRI" + Company);
+               // _Connection = Plataforma.BaseDados.AbreBaseDadosADO("Default", "PRI" + Company);
 
                 // Returns the engine.
                 Engine = MotorLE;
@@ -63,6 +64,22 @@ namespace FirstREST.Lib_Primavera
 
 
         }
+
+
+       /* public static int ExecuteQuery(string query)
+        {
+            object count;
+
+            _Connection.Execute(query, out count);
+
+            return (int)count;
+        }
+
+
+        public static int ExecuteQuery(string query, params object[] values)
+        {
+            return ExecuteQuery(string.Format(query, values));
+        }*/
 
     }
 

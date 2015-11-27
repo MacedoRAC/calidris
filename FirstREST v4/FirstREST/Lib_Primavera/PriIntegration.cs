@@ -502,10 +502,12 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListCab = PriEngine.Engine.Consulta("SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='ECL'");
+                objListCab = PriEngine.Engine.Consulta("SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='FA'");
                 while (!objListCab.NoFim())
                 {
                     dv = new Model.DocVenda();
+                    dv.Aprovados = 0;
+                    dv.Pendentes = 0;
                     dv.id = objListCab.Valor("id");
                     dv.Entidade = objListCab.Valor("Entidade");
                     dv.NumDoc = objListCab.Valor("NumDoc");
@@ -528,6 +530,11 @@ namespace FirstREST.Lib_Primavera
                         lindv.TotalILiquido = objListLin.Valor("TotalILiquido");
                         lindv.TotalLiquido = objListLin.Valor("PrecoLiquido");
                         lindv.Status = objListLin.Valor("CDU_Status");
+
+                        if (lindv.Status == 0)
+                            dv.Aprovados++;
+                        else
+                            dv.Pendentes++;
 
                         StdBELista objArtList;
                         objArtList = PriEngine.Engine.Consulta("SELECT CDU_Cor, CDU_Tamanho FROM Artigo WHERE Artigo=" + objListLin.Valor("Artigo"));
@@ -568,7 +575,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                string st = "SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='ECL' and NumDoc='" + numdoc + "'";
+                string st = "SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='FA' and NumDoc='" + numdoc + "'";
 
                
                 objListCab = PriEngine.Engine.Consulta(st);
@@ -639,7 +646,7 @@ namespace FirstREST.Lib_Primavera
             throw new NotImplementedException();
         }
 
-        public static Boolean UpdateLinhaDocEstado(string codArtigo, int estado, int numDoc, string descricao)
+        public static Boolean UpdateLinhaDocEstado(string codArtigo, int estado, string numDoc, string descricao)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
 
@@ -648,11 +655,17 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                IDcabecDoc = PriEngine.Engine.Consulta("SELECT Id from CabecDoc where NumDoc='" + numDoc + "'");
-                LinhasDoc = PriEngine.Engine.Consulta("SELECT Id from LinhasDoc where IdCabecDoc='" + IDcabecDoc.Valor("Id") + "'" + "AND Artigo='" + codArtigo + "'");
-                
-                Object obj;
-                PriEngine._Connection.Execute("Update LinhasDoc SET CDU_Status='" + estado + "'" + ", CDU_Descricao='" + descricao + "' WHERE Id=" + LinhasDoc.Valor("Id"), out obj);
+                IDcabecDoc = PriEngine.Engine.Consulta("SELECT id from CabecDoc where TipoDoc='FA' AND NumDoc='" + numDoc + "'");
+
+                string idCabecDoc = IDcabecDoc.Valor("id");
+
+                LinhasDoc = PriEngine.Engine.Consulta("SELECT Id from LinhasDoc where IdCabecDoc='" + idCabecDoc + "'" + "AND Artigo=" + codArtigo);
+
+
+                string idLinhasDoc = LinhasDoc.Valor("Id");
+                //PriEngine.ExecuteQuery("Update LinhasDoc SET CDU_Status={0}, CDU_Descricao={1} WHERE Id={2}", estado, descricao, idLinhasDoc);
+                //PriEngine.Engine.Comercial.Vendas.ActualizaValorAtributoID(idLinhasDoc, "CDU_Status", estado);
+                //PriEngine.Engine.Comercial.Vendas.ActualizaValorAtributo(null, 'FA', 'A', 2, "CDU_Status", estado);
 
                 return true;
             }

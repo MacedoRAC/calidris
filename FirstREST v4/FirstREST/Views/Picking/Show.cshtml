@@ -10,7 +10,7 @@
     <div class="row">
         @foreach (var encomenda in @Model)
         {
-            <a class="col-md-3" href="Picking/Index/@encomenda.NumDoc" target="_blank">
+            <a class="col-md-3" href="/Picking/Index/@encomenda.NumDoc" target="_blank">
                 <div class="ibox">
                     <div class="ibox-content product-box">
 
@@ -22,6 +22,8 @@
                             <span class="product-price">
                                 Encomenda nº @encomenda.NumDoc
                             </span>
+
+                            <span class="label label-warning pull-left">@encomenda.Pendentes / @encomenda.LinhasDoc.Count</span>
                         </div>
                     </div>
                 </div>
