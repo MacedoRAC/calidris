@@ -15,24 +15,11 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string DescArtigo
-        {
-            get;
-            set;
-        }
-
         public string IdCabecDoc
         {
             get;
             set;
         }
-
-        public int NumLinha
-        {
-            get;
-            set;
-        }
-
 
         public double Quantidade
         {
@@ -70,13 +57,37 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string Armazem
+        public string Cor
         {
             get;
             set;
         }
 
-        public string Lote
+        public string Tamanho
+        {
+            get;
+            set;
+        }
+
+        public int Fila
+        {
+            get;
+            set;
+        }
+
+        public int Slot
+        {
+            get;
+            set;
+        }
+
+        public int Nivel
+        {
+            get;
+            set;
+        }
+
+        public int Status
         {
             get;
             set;

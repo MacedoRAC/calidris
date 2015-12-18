@@ -16,7 +16,7 @@ namespace FirstREST.Controllers
 
         public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
         {
-            return Lib_Primavera.PriIntegration.VGR_List();
+            return Lib_Primavera.PriIntegration.putaway_list();
         }
 
         /*

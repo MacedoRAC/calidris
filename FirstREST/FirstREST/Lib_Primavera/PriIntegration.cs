@@ -311,64 +311,66 @@ namespace FirstREST.Lib_Primavera
         #region DocCompra
         
 
-        public static List<Model.DocCompra> VGR_List()
+        public static List<Model.DocCompra> putaway_list()
         {
-                
+
             StdBELista objListCab;
             StdBELista objListLin;
-            Model.DocCompra dc = new Model.DocCompra();
-            List<Model.DocCompra> listdc = new List<Model.DocCompra>();
-            Model.LinhaDocCompra lindc = new Model.LinhaDocCompra();
-            List<Model.LinhaDocCompra> listlindc = new List<Model.LinhaDocCompra>();
+            Model.DocCompra dv = new Model.DocCompra();
+            List<Model.DocCompra> listdv = new List<Model.DocCompra>();
+            Model.LinhaDocCompra lindv = new Model.LinhaDocCompra();
+            List<Model.LinhaDocCompra> listlindv = new
+            List<Model.LinhaDocCompra>();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListCab = PriEngine.Engine.Consulta("SELECT id, NumDocExterno, Entidade, DataDoc, NumDoc, TotalMerc, Serie From CabecCompras where TipoDoc='VGR'");
+                objListCab = PriEngine.Engine.Consulta("SELECT id, NumDocExterno From CabecCompras where TipoDoc='VGR'");
                 while (!objListCab.NoFim())
                 {
-                    dc = new Model.DocCompra();
-                    dc.id = objListCab.Valor("id");
-                    dc.NumDocExterno = objListCab.Valor("NumDocExterno");
-                    dc.Entidade = objListCab.Valor("Entidade");
-                    dc.NumDoc = objListCab.Valor("NumDoc");
-                    dc.Data = objListCab.Valor("DataDoc");
-                    dc.TotalMerc = objListCab.Valor("TotalMerc");
-                    dc.Serie = objListCab.Valor("Serie");
-                    objListLin = PriEngine.Engine.Consulta("SELECT idCabecCompras, Artigo, Descricao, Quantidade, Unidade, PrecUnit, Desconto1, TotalILiquido, PrecoLiquido, Armazem, Lote from LinhasCompras where IdCabecCompras='" + dc.id + "' order By NumLinha");
-                    listlindc = new List<Model.LinhaDocCompra>();
+                    dv = new Model.DocCompra();
+                    dv.Colocados = 0;
+                    dv.PorColocar = 0;
+                    dv.id = objListCab.Valor("id");
+                    dv.NumDoc = objListCab.Valor("NumDoc");
+                    objListLin = PriEngine.Engine.Consulta("SELECT CDU_idCabecDoc, CDU_CodArtigo, CDU_Quantidade, CDU_Estado from TDU_Putaway where CDU_idCabecDoc='" + dv.id + "'");
+                    listlindv = new List<Model.LinhaDocCompra>();
 
                     while (!objListLin.NoFim())
                     {
-                        lindc = new Model.LinhaDocCompra();
-                        lindc.IdCabecDoc = objListLin.Valor("idCabecCompras");
-                        lindc.CodArtigo = objListLin.Valor("Artigo");
-                        lindc.DescArtigo = objListLin.Valor("Descricao");
-                        lindc.Quantidade = objListLin.Valor("Quantidade");
-                        lindc.Unidade = objListLin.Valor("Unidade");
-                        lindc.Desconto = objListLin.Valor("Desconto1");
-                        lindc.PrecoUnitario = objListLin.Valor("PrecUnit");
-                        lindc.TotalILiquido = objListLin.Valor("TotalILiquido");
-                        lindc.TotalLiquido = objListLin.Valor("PrecoLiquido");
-                        lindc.Armazem = objListLin.Valor("Armazem");
-                        lindc.Lote = objListLin.Valor("Lote");
+                        lindv = new Model.LinhaDocCompra();
+                        lindv.IdCabecDoc = objListLin.Valor("CDU_idCabecDoc");
+                        lindv.CodArtigo = objListLin.Valor("CDU_Artigo");
+                        lindv.Quantidade = objListLin.Valor("CDU_Quantidade");
+                        lindv.Status = objListLin.Valor("CDU_Estado");
 
-                        listlindc.Add(lindc);
+                        if (lindv.Status == 0)
+                            dv.PorColocar++;
+                        else
+                            dv.Colocados++;
+
+                        StdBELista objArmazLista;
+                        objArmazLista = PriEngine.Engine.Consulta("SELECT Fila, Slot, Nivel FROM ArtigoArmazem WHERE Artigo=" + objListLin.Valor("CDU_Artigo"));
+                        lindv.Fila = objArmazLista.Valor("Fila");
+                        lindv.Slot = objArmazLista.Valor("Slot");
+                        lindv.Nivel = objArmazLista.Valor("Nivel");
+
+                        listlindv.Add(lindv);
                         objListLin.Seguinte();
                     }
 
-                    dc.LinhasDoc = listlindc;
-                    
-                    listdc.Add(dc);
+                    dv.LinhasDoc = listlindv;
+                    listdv.Add(dv);
                     objListCab.Seguinte();
                 }
             }
-            return listdc;
+
+            return listdv;
         }
 
                 
         public static Model.RespostaErro VGR_New(Model.DocCompra dc)
         {
-            Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
+           /* Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
             
 
             GcpBEDocumentoCompra myGR = new GcpBEDocumentoCompra();
@@ -420,7 +422,9 @@ namespace FirstREST.Lib_Primavera
                 erro.Erro = 1;
                 erro.Descricao = ex.Message;
                 return erro;
-            }
+            }*/
+
+            return new Model.RespostaErro();
         }
 
 
@@ -556,7 +560,7 @@ namespace FirstREST.Lib_Primavera
                     objListCab.Seguinte();
                 }
             }
-
+                       
             return listdv;
         }
 
@@ -654,38 +658,44 @@ namespace FirstREST.Lib_Primavera
             StdBELista LinhasDoc;
             StdBELista IDcabecDoc;
 
+            var dv = new GcpBEDocumentoVenda();
+
+
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
                 IDcabecDoc = PriEngine.Engine.Consulta("SELECT id from CabecDoc where TipoDoc='FA' AND NumDoc='" + numDoc + "'");
 
                 string idCabecDoc = IDcabecDoc.Valor("id");
 
-                LinhasDoc = PriEngine.Engine.Consulta("SELECT Id from LinhasDoc where IdCabecDoc='" + idCabecDoc + "'" + "AND Artigo=" + codArtigo);
+                GcpBELinhaDocumentoVenda ld = new GcpBELinhaDocumentoVenda();
 
-                string idLinhasDoc = LinhasDoc.Valor("Id");
+                LinhasDoc = PriEngine.Engine.Consulta("SELECT idCabecDoc, Artigo, Descricao, Quantidade, Unidade, PrecUnit, Desconto1, TotalILiquido, PrecoLiquido from LinhasDoc where IdCabecDoc='" + idCabecDoc + "'" + "AND Artigo=" + codArtigo);
+                
+                ld.set_Artigo(LinhasDoc.Valor("Arigo"));
+                ld.set_Descricao(LinhasDoc.Valor("Descricao"));
+                ld.set_Quantidade(LinhasDoc.Valor("Quantidade"));
+                ld.set_Unidade(LinhasDoc.Valor("Unidade"));
+                ld.set_PrecUnit(LinhasDoc.Valor("PrecUnit"));
+                ld.set_Desconto1(LinhasDoc.Valor("Desconto1"));
+                ld.set_TotalIliquido(LinhasDoc.Valor("TotalIliquido"));
+                ld.set_PrecoLiquido(LinhasDoc.Valor("PrecoLiquido"));
 
-                GcpBELinhasDocumentoVenda clientePrimavera = new GcpBELinhasDocumentoVenda();
 
-                StdBECampos CamposCDU = new StdBECampos();
-                StdBECampo status_campo = new StdBECampo();
-                StdBECampo descricao_campo = new StdBECampo();
+                StdBECampos campos = new StdBECampos();
+                StdBECampo camp_status = new StdBECampo();
+                camp_status.Nome = "CDU_Status";
+                camp_status.Valor = estado;
+                campos.Insere(camp_status);
+                StdBECampo camp_desc = new StdBECampo();
+                camp_desc.Nome = ("CDU_Descricao");
+                camp_desc.Valor = descricao;
+                campos.Insere(camp_desc);
 
-                status_campo.Nome = "CDU_Status";
-                status_campo.Valor = estado;
-                CamposCDU.Insere(status_campo);
+                ld.set_CamposUtil(campos);
 
-
-                descricao_campo.Nome = "CDU_Descricao";
-                descricao_campo.Valor = descricao;
-                CamposCDU.Insere(descricao_campo);
-
-                clientePrimavera.set_CamposUtil(CamposCDU);
-
-                PriEngine.Engine.Comercial.Clientes.Actualiza(clientePrimavera);
-                PriEngine.ExecuteQuery("Update LinhasDoc SET CDU_Status={0}, CDU_Descricao={1} WHERE Id={2}", estado, descricao, idLinhasDoc);
-                //PriEngine.Engine.Comercial.Vendas.ActualizaValorAtributoID(idLinhasDoc, "CDU_Status", estado);
-                //PriEngine.Engine.Comercial.Vendas.ActualizaValorAtributo(null, 'FA', 'A', 2, "CDU_Status", estado);
-
+               // PriEngine.Engine.Comercial.Vendas.
+                
+          
                 return true;
             }
 

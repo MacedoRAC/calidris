@@ -123,7 +123,7 @@ namespace FirstREST.Controllers
             erro = Lib_Primavera.PriIntegration.UpdateLinhaDocEstado(codArtigo, estado, numDoc, descricao);
             if (!erro)
             {
-                return Request.CreateResponse(HttpStatusCode.OK, "Artigo pronta para Putaway");
+                return Request.CreateResponse(HttpStatusCode.OK, "Artigo pronto para Putaway");
             }
             else
             {
