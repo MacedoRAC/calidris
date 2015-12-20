@@ -12,33 +12,27 @@ namespace FirstREST.Controllers
 {
     public class DocCompraController : ApiController
     {
-
-
         public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
         {
             return Lib_Primavera.PriIntegration.putaway_list();
         }
-
-        /*
-        // GET api/cliente/5    
+   
         public Lib_Primavera.Model.DocCompra Get(string id)
         {
-            Lib_Primavera.Model.DocVenda doccompra = Lib_Primavera.Comercial.GR_List(id);
-            if (docvenda == null)
+            Lib_Primavera.Model.DocCompra doccompra = Lib_Primavera.PriIntegration.putaway_get(id);
+            if (doccompra == null)
             {
                 throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
+                    Request.CreateResponse(HttpStatusCode.NotFound));
 
             }
             else
             {
-                return docvenda;
+                return doccompra;
             }
         }
-        */
-
-
-        public HttpResponseMessage Post(Lib_Primavera.Model.DocCompra dc)
+        
+        /*public HttpResponseMessage Post(Lib_Primavera.Model.DocCompra dc)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.VGR_New(dc);
@@ -57,7 +51,7 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-        }
+        }*/
 
     }
 }

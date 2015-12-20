@@ -1,0 +1,32 @@
+﻿@model List<FirstREST.Lib_Primavera.Model.DocCompra>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Encomendas</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var encomenda in @Model)
+        {
+            <a class="col-md-3" href="/Putaway/Index/@encomenda.NumDoc" target="_blank">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+
+                        <div class="product-imitation">
+                            <small class="text-muted">Data Descarga</small>
+                            <p class="product-name">@encomenda.DataDescarga - @encomenda.HoraDescarga</p>
+                        </div>
+                        <div class="product-desc">
+                            <span class="product-price">
+                                Encomenda nº @encomenda.NumDoc
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+

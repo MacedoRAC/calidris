@@ -13,16 +13,11 @@ namespace FirstREST.Controllers
 {
     public class DocVendaController : ApiController
     {
-        //
-        // GET: /Clientes/
-
         public List<Lib_Primavera.Model.DocVenda> Get()
         {
             return Lib_Primavera.PriIntegration.Encomendas_List();
         }
 
-
-         
         public  Lib_Primavera.Model.DocVenda Get(string id)
         {
             Lib_Primavera.Model.DocVenda docvenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
@@ -35,7 +30,6 @@ namespace FirstREST.Controllers
                 return docvenda;
             }
         }
-
 
         public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
@@ -57,7 +51,6 @@ namespace FirstREST.Controllers
             }
 
         }
-
 
         public HttpResponseMessage Put(int id, Lib_Primavera.Model.Cliente cliente)
         {
@@ -82,8 +75,6 @@ namespace FirstREST.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
             }
         }
-
-
 
         public HttpResponseMessage Delete(string id)
         {

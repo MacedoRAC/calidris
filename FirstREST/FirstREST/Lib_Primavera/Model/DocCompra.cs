@@ -14,7 +14,25 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
+        public string NumDocExterno
+        {
+            get;
+            set;
+        }
+
         public int NumDoc
+        {
+            get;
+            set;
+        }
+
+        public string HoraDescarga
+        {
+            get;
+            set;
+        }
+
+        public string DataDescarga
         {
             get;
             set;

@@ -34,6 +34,10 @@
                                 {
                                     <img alt="image" class="img-circle" src="~/Images/profile_small2.jpg" />
                                 }
+                                else if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Packing")
+                                {
+                                    <img alt="image" class="img-circle" src="~/Images/profile_small2.jpg" />
+                                }
                             </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
@@ -50,6 +54,13 @@
                                             <strong class="font-bold">Joana Ribeiro</strong>
                                         </span>
                                         <span class="text-muted text-xs block">Putaway<b class="caret"></b></span>
+                                    }
+                                    else if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Packing")
+                                    {
+                                        <span class="block m-t-xs">
+                                            <strong class="font-bold">Maria Carneiro</strong>
+                                        </span>
+                                        <span class="text-muted text-xs block">Picking<b class="caret"></b></span>
                                     }
                                 </span>
                             </a>

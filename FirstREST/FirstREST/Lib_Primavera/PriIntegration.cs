@@ -238,6 +238,7 @@ namespace FirstREST.Lib_Primavera
         #endregion Cliente;   // -----------------------------  END   CLIENTE    -----------------------
 
 
+
         #region Artigo
 
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
@@ -310,7 +311,6 @@ namespace FirstREST.Lib_Primavera
 
         #region DocCompra
         
-
         public static List<Model.DocCompra> putaway_list()
         {
 
@@ -324,14 +324,17 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListCab = PriEngine.Engine.Consulta("SELECT id, NumDocExterno From CabecCompras where TipoDoc='VGR'");
+                objListCab = PriEngine.Engine.Consulta("SELECT id, NumDocExterno, NumDoc, HoraDescarga, DataDescarga From CabecCompras where TipoDoc='VGR'");
                 while (!objListCab.NoFim())
                 {
                     dv = new Model.DocCompra();
                     dv.Colocados = 0;
                     dv.PorColocar = 0;
                     dv.id = objListCab.Valor("id");
+                    dv.NumDocExterno = objListCab.Valor("NumDocExterno");
                     dv.NumDoc = objListCab.Valor("NumDoc");
+                    dv.HoraDescarga = objListCab.Valor("HoraDescarga");
+                    dv.DataDescarga = objListCab.Valor("DataDescarga");
                     objListLin = PriEngine.Engine.Consulta("SELECT CDU_idCabecDoc, CDU_CodArtigo, CDU_Quantidade, CDU_Estado from TDU_Putaway where CDU_idCabecDoc='" + dv.id + "'");
                     listlindv = new List<Model.LinhaDocCompra>();
 
@@ -367,68 +370,14 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         }
 
-                
-        public static Model.RespostaErro VGR_New(Model.DocCompra dc)
+
+        public static Model.DocCompra putaway_get(string numDoc)
         {
-           /* Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
-            
-
-            GcpBEDocumentoCompra myGR = new GcpBEDocumentoCompra();
-            GcpBELinhaDocumentoCompra myLin = new GcpBELinhaDocumentoCompra();
-            GcpBELinhasDocumentoCompra myLinhas = new GcpBELinhasDocumentoCompra();
-
-            PreencheRelacaoCompras rl = new PreencheRelacaoCompras();
-            List<Model.LinhaDocCompra> lstlindv = new List<Model.LinhaDocCompra>();
-
-            try
-            {
-                if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
-                {
-                    // Atribui valores ao cabecalho do doc
-                    //myEnc.set_DataDoc(dv.Data);
-                    myGR.set_Entidade(dc.Entidade);
-                    myGR.set_NumDocExterno(dc.NumDocExterno);
-                    myGR.set_Serie(dc.Serie);
-                    myGR.set_Tipodoc("VGR");
-                    myGR.set_TipoEntidade("F");
-                    // Linhas do documento para a lista de linhas
-                    lstlindv = dc.LinhasDoc;
-                    PriEngine.Engine.Comercial.Compras.PreencheDadosRelacionados(myGR, rl);
-                    foreach (Model.LinhaDocCompra lin in lstlindv)
-                    {
-                        PriEngine.Engine.Comercial.Compras.AdicionaLinha(myGR, lin.CodArtigo, lin.Quantidade, lin.Armazem, "", lin.PrecoUnitario, lin.Desconto);
-                    }
-
-
-                    PriEngine.Engine.IniciaTransaccao();
-                    PriEngine.Engine.Comercial.Compras.Actualiza(myGR, "Teste");
-                    PriEngine.Engine.TerminaTransaccao();
-                    erro.Erro = 0;
-                    erro.Descricao = "Sucesso";
-                    return erro;
-                }
-                else
-                {
-                    erro.Erro = 1;
-                    erro.Descricao = "Erro ao abrir empresa";
-                    return erro;
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                PriEngine.Engine.DesfazTransaccao();
-                erro.Erro = 1;
-                erro.Descricao = ex.Message;
-                return erro;
-            }*/
-
-            return new Model.RespostaErro();
+            return new Model.DocCompra();
         }
 
-
         #endregion DocCompra
+
 
 
         #region DocsVenda
@@ -490,8 +439,6 @@ namespace FirstREST.Lib_Primavera
                 return erro;
             }
         }
-
-     
 
         public static List<Model.DocVenda> Encomendas_List()
         {
@@ -563,9 +510,6 @@ namespace FirstREST.Lib_Primavera
                        
             return listdv;
         }
-
-
-       
 
         public static Model.DocVenda Encomenda_Get(string numdoc)
         {
@@ -639,8 +583,6 @@ namespace FirstREST.Lib_Primavera
             return null;
         }
 
-        #endregion DocsVenda
-
         internal static bool Update_Encomenda(string Ref, string RefArt)
         {
             throw new NotImplementedException();
@@ -670,7 +612,7 @@ namespace FirstREST.Lib_Primavera
                 GcpBELinhaDocumentoVenda ld = new GcpBELinhaDocumentoVenda();
 
                 LinhasDoc = PriEngine.Engine.Consulta("SELECT idCabecDoc, Artigo, Descricao, Quantidade, Unidade, PrecUnit, Desconto1, TotalILiquido, PrecoLiquido from LinhasDoc where IdCabecDoc='" + idCabecDoc + "'" + "AND Artigo=" + codArtigo);
-                
+
                 ld.set_Artigo(LinhasDoc.Valor("Arigo"));
                 ld.set_Descricao(LinhasDoc.Valor("Descricao"));
                 ld.set_Quantidade(LinhasDoc.Valor("Quantidade"));
@@ -693,13 +635,15 @@ namespace FirstREST.Lib_Primavera
 
                 ld.set_CamposUtil(campos);
 
-               // PriEngine.Engine.Comercial.Vendas.
-                
-          
+                // PriEngine.Engine.Comercial.Vendas.
+
+
                 return true;
             }
 
             return false;
         }
+
+        #endregion DocsVenda
     }
 }
