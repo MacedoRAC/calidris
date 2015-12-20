@@ -1,0 +1,157 @@
+﻿@model FirstREST.Lib_Primavera.Model.DocVenda
+
+
+<div class="row wrapp   er border-bottom white-bg page-heading" id="body">
+    <div class="col-sm-4">
+        <h2>Estado das Encomendas</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">Encomenda</a>
+            </li>
+            <li class="active">
+                <strong>Aprovar</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+<div class="row">
+<div class="col-lg-12">
+    <h2>Encomenda <b>@Model.NumDoc</b> </h2> <!--| Prazo de entrega: 20 OUT - 29 OUT 2015</h2>-->
+</div>
+</div>
+<div class="row">
+
+<div class="col-lg-12">
+    <div class="ibox">
+        <div class="ibox-content">
+
+            <table class="footable table table-stripped" data-page-size="10">
+                <thead>
+                    <tr>
+                        <th>Fila/Slot/Nível</th>
+                        <th data-hide="phone">Referência</th>
+                        <th data-hide="phone">Produto</th>
+                        <th data-hide="phone">Tamanho</th>
+                        <th data-hide="phone">Cor</th>
+                        <th data-hide="phone">Quantidade</th>
+                        <th>Estado</th>
+                        <th data-hide="phone"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var artigo in @Model.LinhasDoc)
+                    {
+                        <tr>
+                            <td>@artigo.Fila-@artigo.Slot-@artigo.Nivel</td>
+                            <td>@artigo.CodArtigo</td>
+                            <td>@artigo.DescArtigo</td>
+                            <td>@artigo.Tamanho</td>
+                            <td>@artigo.Cor</td>
+                            <td>@artigo.Quantidade</td>
+
+                            @if (@artigo.Status == 0)
+                            {
+                                <td><span class="label label-primary">Aprovado</span></td>
+                                <td>
+                                    <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);" disabled>
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </button>
+                                    <button class="btn btn-xs btn-primary" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);" disabled>
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                </td>
+                            }
+                            else if (@artigo.Status == 1)
+                            {
+                                <td><span class="label label-warning">Pendente</span></td>
+                                <td>
+                                    <a data-toggle="modal" class="btn btn-xs btn-white" href="#modal-excep"><i class="fa fa-exclamation-triangle"></i></a>
+                                    <div id="modal-excep" class="modal fade" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                                    <h4 class="modal-title">Lançar exceção</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="exce_coment">Comentário sobre o lançamento da exceção:</label>
+                                                        <input type="text" id="exce_coment" name="exce_coment" value="" placeholder="insira a razão do lançamento da exceção" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Fechar</button>
+                                                    <button type="button" class="btn btn-primary">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <a data-toggle="modal" class="btn btn-xs btn-primary" href="#modal-accep"><i class="fa fa-check"></i></a>
+                                    <div id="modal-accep" class="modal fade" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                                    <h4 class="modal-title">Aprovar artigo</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Tem a certeza que quer aprovar este artigo?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Fechar</button>
+                                                    <button type="button" class="btn btn-primary">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            }
+                            else
+                            {
+                                <td><span class="label label-danger">Exceção</span></td>
+                                <td>
+                                    <button class="btn btn-xs btn-white" type="submit" style="border: 0; opacity: 50; background: rgb(200, 200, 200);" disabled>
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </button>
+                                    <a data-toggle="modal" class="btn btn-xs btn-primary" href="#modal-accep"><i class="fa fa-check"></i></a>
+                                    <div id="modal-accep" class="modal fade" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+                                                    <h4 class="modal-title">Aprovar artigo</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Tem a certeza que quer aprovar este artigo?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-white" data-dismiss="modal">Fechar</button>
+                                                    <button type="button" class="btn btn-primary">Confirmar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <ul class="pagination pull-right"></ul>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>

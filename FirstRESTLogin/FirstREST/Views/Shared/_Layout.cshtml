@@ -1,0 +1,124 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.3/ecommerce-orders.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Oct 2015 21:18:53 GMT -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calidris</title>
+
+    @Styles.Render("~/Content/mycss")
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Picking")
+                                {
+                                    <img alt="image" class="img-circle" src="~/Images/profile_small.jpg" />
+                                }
+                                else if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Putaway")
+                                {
+                                    <img alt="image" class="img-circle" src="~/Images/profile_small2.jpg" />
+                                }
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Picking")
+                                    {
+                                        <span class="block m-t-xs">
+                                            <strong class="font-bold">João Fonseca</strong>
+                                        </span> 
+                                        <span class="text-muted text-xs block">Picking<b class="caret"></b></span>
+                                    }
+                                    else if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Putaway")
+                                    {
+                                        <span class="block m-t-xs">
+                                            <strong class="font-bold">Joana Ribeiro</strong>
+                                        </span>
+                                        <span class="text-muted text-xs block">Putaway<b class="caret"></b></span>
+                                    }
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li>
+                                    <a href="#">Perfil</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            C
+                        </div>
+                    </li>
+
+                    <li>
+                        @if (@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Picking") 
+                        { 
+                            <a href="/Picking/Show"><i class="fa fa-truck"></i> <span class="nav-label">Estado das Encomendas</span></a>
+                        }else if(@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Putaway"){
+                            <a href="/Putaway/Show"><i class="fa fa-truck"></i> <span class="nav-label">Estado das Encomendas</span></a>
+                        }
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-gear"></i> <span class="nav-label">Definições</span></a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <img alt="image" src="~/Images/logo_calidris.png" />
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+            @RenderBody()
+
+
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> Calidris &copy; 2015-2016
+                </div>
+            </div>
+
+        </div>
+    </div>
+        
+    @Scripts.Render("~/bundles/myjs")
+
+
+</body>
+
+
+</html>
