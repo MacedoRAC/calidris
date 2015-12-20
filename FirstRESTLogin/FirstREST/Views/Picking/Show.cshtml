@@ -1,0 +1,34 @@
+﻿@model List<FirstREST.Lib_Primavera.Model.DocVenda>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Encomendas</h2>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var encomenda in @Model)
+        {
+            <a class="col-md-3" href="/Picking/Index/@encomenda.NumDoc" target="_blank">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+
+                        <div class="product-imitation">
+                            <small class="text-muted">Data</small>
+                            <p class="product-name">@encomenda.Data.ToString("dd-MM-yyyy")</p>
+                        </div>
+                        <div class="product-desc">
+                            <span class="product-price">
+                                Encomenda nº @encomenda.NumDoc
+                            </span>
+
+                            <span class="label label-warning pull-left">@encomenda.Pendentes / @encomenda.LinhasDoc.Count</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
