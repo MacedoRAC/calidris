@@ -15,7 +15,28 @@ namespace FirstREST.Lib_Primavera
 {
     public class PriIntegration
     {
+        # region Funcionario
+
+        public static bool Login(string username, string password)
+        {
+            StdBELista funcList;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                funcList = PriEngine.Engine.Consulta("SELECT CDU_Tipo FROM  Funcionarios WHERE Codigo=" + username + " and CDU_Password=" + password);
+
+                if (funcList.NumLinhas() > 0)
+                    return true;
+                else
+                    return false;
+            }
+
+            return false;
+        }
+
+        # endregion Funcionario
         
+
 
         # region Cliente
 
@@ -482,7 +503,7 @@ namespace FirstREST.Lib_Primavera
                         lindv.TotalLiquido = objListLin.Valor("PrecoLiquido");
                         lindv.Status = objListLin.Valor("CDU_Status");
 
-                        if (lindv.Status == 0)
+                        if (lindv.Status == "0")
                             dv.Aprovados++;
                         else
                             dv.Pendentes++;

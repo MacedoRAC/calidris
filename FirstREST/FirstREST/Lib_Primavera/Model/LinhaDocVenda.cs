@@ -93,7 +93,7 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public int Status
+        public string Status
         {
             get;
             set;

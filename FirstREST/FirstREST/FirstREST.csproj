@@ -277,6 +277,7 @@
     <Compile Include="Controllers\HomeController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PickingController.cs" />
     <Compile Include="Controllers\PackingController.cs" />
     <Compile Include="Controllers\PutawayController.cs" />
@@ -287,6 +288,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Lib_Primavera\Model\Func.cs" />
     <Compile Include="Lib_Primavera\PriIntegration.cs" />
     <Compile Include="Lib_Primavera\Model\Artigo.cs" />
     <Compile Include="Lib_Primavera\Model\Cliente.cs" />
@@ -693,6 +695,7 @@
     <Content Include="Views\Packing\Index.cshtml" />
     <Content Include="Views\Putaway\Index.cshtml" />
     <Content Include="Views\Putaway\Show.cshtml" />
+    <Content Include="Views\Login\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
