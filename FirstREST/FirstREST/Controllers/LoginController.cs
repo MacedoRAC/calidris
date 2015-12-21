@@ -17,13 +17,10 @@ namespace FirstREST.Controllers
             return View();
         }
 
-        public string Index(string username, string password)
+        public ActionResult Index(Lib_Primavera.Model.Func func)
         {
-            if (!Lib_Primavera.PriIntegration.Login(username, password))
-                throw new HttpResponseException(new HttpResponseMessage());
-
-            var tokenContents = Encoding.UTF8.GetBytes(username + ":" + password);
-            return Convert.ToBase64String(tokenContents);
+            
+           return RedirectToAction("Show", "Picking");
         }
     }
 }
